@@ -7,12 +7,14 @@ function App() {
     return storedCart ? JSON.parse(storedCart) : [];
   });
 
+  const API_BASE = 'https://mini-ecommerce-store.onrender.com';
+
   useEffect(()=>{
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch(`${API_BASE}/api/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Failed to fetch products", err));
